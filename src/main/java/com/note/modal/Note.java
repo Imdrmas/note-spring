@@ -12,12 +12,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "note")
-@JsonIgnoreProperties(value = {"createAt", "updateAt"})
 public class Note {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,15 +29,14 @@ public class Note {
 	@Column(columnDefinition = "TEXT")
     private String content;
 	
-	@Column(nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 	
-	@Column(nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
     private Date updateAt;
 	
 	@ManyToOne
+    @JsonBackReference(value = "category")
 	private Category category;
 
 	public Note() {

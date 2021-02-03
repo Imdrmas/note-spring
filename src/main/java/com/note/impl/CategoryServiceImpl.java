@@ -31,6 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Category existsCategory = categoryDao.findById(id).orElse(null);
 		existsCategory.setUpdateAt(new Date());
 		existsCategory.setName(category.getName());
+		existsCategory.setCreateAt(null);
 		return categoryDao.save(existsCategory);
 	}
 

@@ -1,7 +1,5 @@
 package com.note.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,7 +29,7 @@ public class NoteController {
 
 	@PutMapping("/editNote/{id}")
 	Note editNote(@RequestBody Note note, @PathVariable long id) {
-		return noteService.addNote(note, id);
+		return noteService.editNote(note, id);
 	}
 
 	@DeleteMapping("/deleteNote/{id}")
@@ -42,11 +40,6 @@ public class NoteController {
 	@GetMapping("/findNote/{id}")
 	Note findNote(@PathVariable long id) {
 		return noteService.findNote(id);
-	}
-
-	@GetMapping("/findNotes/{id}")
-	List<Note> findNotes(@PathVariable long id) {
-		return noteService.findNotes(id);
 	}
 
 }
